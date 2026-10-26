@@ -3,7 +3,13 @@
     "description": "基础 · 启用资料查询",
     "type": "bool",
     "default": true,
-    "hint": "关闭后停止注入指导，MCP 服务也将停止查询；MCP 连接可在工具管理中独立停用。"
+    "hint": "关闭后停止检索指导与本插件 MCP 连接；不会改变其他 MCP 服务。"
+  },
+  "auto_connect_mcp": {
+    "description": "基础 · 自动登记并连接 MCP",
+    "type": "bool",
+    "default": true,
+    "hint": "默认自动提供五个资料工具，无需手填命令和路径。保留 MCP 管理中手动停用的状态；关闭本项后交由 MCP 管理操作。"
   },
   "attach_guidance": {
     "description": "基础 · 相关话题自动检索指导",
@@ -33,7 +39,7 @@
     "description": "CurseForge · API Key",
     "type": "string",
     "default": "",
-    "hint": "仅在本机配置保存，界面默认隐藏；留空时 MC百科与 Modrinth 正常使用。请先在 MCP 管理登记服务，密钥变更由服务后续查询读取。",
+    "hint": "需要用户自行向 CurseForge 申请。仅在本机配置保存，默认隐藏；留空时 MC百科与 Modrinth 仍可使用，密钥修改后由后续查询读取。",
     "secret": true,
     "condition": {
       "curseforge_enabled": true

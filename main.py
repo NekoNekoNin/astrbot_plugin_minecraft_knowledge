@@ -1,10 +1,15 @@
 """Add focused retrieval guidance for native Minecraft MCP tools."""
 
 import re
+from pathlib import Path
 
+from astrbot.api import logger
 from astrbot.api.event import AstrMessageEvent, filter
 from astrbot.api.provider import ProviderRequest
 from astrbot.api.star import Context, Star
+from astrbot.core.utils.astrbot_path import get_astrbot_data_path
+
+from .mcp_setup import ManagedMCP
 
 MINECRAFT_QUERY = re.compile(
     r"我的世界|模组|整合包|麦块|MC百科|mcmod\.cn|curseforge\.com|modrinth\.com"
@@ -40,6 +45,47 @@ class MinecraftKnowledgePlugin(Star):
         """
         super().__init__(context)
         self.config = config if isinstance(config, dict) else {}
+        self.mcp = ManagedMCP(
+            context.get_llm_tool_manager(),
+            Path(__file__).with_name("server.py"),
+            Path(get_astrbot_data_path())
+            / "config/astrbot_plugin_minecraft_knowledge_config.json",
+        )
+
+    async def initialize(self):
+        """Connect our MCP service without requiring manual registration."""
+        try:
+            await self.mcp.start(
+                self.config.get("enabled", True),
+                self.config.get("auto_connect_mcp", True),
+            )
+        except Exception as exc:
+            self.mcp.message = (
+                "连接失败，请检查依赖与 MCP 日志后重载插件（"
+                + type(exc).__name__
+                + "）"
+            )
+            logger.warning(
+                "Minecraft MCP initialization failed (%s).", type(exc).__name__
+            )
+
+    @filter.permission_type(filter.PermissionType.ADMIN)
+    @filter.command("mc资料状态")
+    async def mcp_status(self, event: AstrMessageEvent):
+        """Show administrator-only connection diagnostics without secrets."""
+        state = self.mcp.status()
+        yield event.plain_result(
+            f"Minecraft资料助手：{state['message']}\n"
+            f"连接：{'正常' if state['connected'] else '未连接'}；工具：{state['tool_count']}/5\n"
+            "CurseForge 需自行申请并在插件配置中填写 API Key。"
+        )
+
+    async def terminate(self):
+        """Disconnect this plugin's service without touching other MCP entries."""
+        try:
+            await self.mcp.stop()
+        except Exception as exc:
+            logger.warning("Minecraft MCP shutdown failed (%s).", type(exc).__name__)
 
     @filter.on_llm_request(priority=50)
     async def add_retrieval_guidance(

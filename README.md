@@ -4,7 +4,7 @@
 
 查阅 MC百科、Modrinth 和 CurseForge 的模组资料、教程与版本；CurseForge 需自备 API Key。
 
-版本：`1.1.0` · 许可：[MIT](LICENSE)
+版本：`1.2.0` · 许可：[MIT](LICENSE)
 
 作者：**NekoNekoNin**。
 
@@ -18,7 +18,7 @@
 
 在 AstrBot 的插件管理上传本插件发布 ZIP，或使用[本仓库地址](https://github.com/NekoNekoNin/astrbot_plugin_minecraft_knowledge)安装。内部插件名保持 `astrbot_plugin_minecraft_knowledge`，升级时沿用已有配置。元数据已绑定本仓库，更新时请核对版本与更新记录。
 
-需要在 AstrBot 的 MCP 管理中登记一次本插件的 stdio 服务。MC百科和 Modrinth 不需要密钥；CurseForge 官方 API 需要自己的 API Key，未配置时不会虚构下载量。
+默认自动登记并连接本插件的 stdio MCP 服务，无需填写 Python 或脚本路径。MC百科和 Modrinth 不需要密钥；CurseForge 官方 API 需要自己的 API Key，未配置时不会虚构下载量。
 
 ## 设置
 
@@ -36,7 +36,7 @@
 
 ## MCP 接入
 
-详见 [MCP 接入说明](docs/MCP_SETUP.md)。服务名称建议 `minecraft-knowledge`，配置文件路径只指向本插件配置。关闭插件总开关会拒绝查询，单个来源开关分别约束搜索、正文与版本接口。
+详见 [MCP 接入说明](docs/MCP_SETUP.md)。自动管理的服务名称为 `minecraft-knowledge`，配置文件路径只指向本插件配置。保留 MCP 管理中手动停用的开关；插件重载会重新连接，禁用插件会停止自身连接。管理员可发送 `/mc资料状态` 检查连接与工具数量。使用工具白名单的人格仍需允许这五个工具。
 
 ## 开发与检查
 
