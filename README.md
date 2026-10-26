@@ -1,10 +1,12 @@
 <img src="logo.png" width="80" height="80" alt="Minecraft资料助手图标">
 
-# NekoNekoNin · Minecraft资料助手
+# Minecraft资料助手
 
 查阅 MC百科、Modrinth 和 CurseForge 的模组资料、教程与版本；CurseForge 需自备 API Key。
 
 版本：`1.1.0` · 许可：[MIT](LICENSE)
+
+作者：**NekoNekoNin**。
 
 ## 能做什么
 
@@ -20,7 +22,7 @@
 
 ## 设置
 
-入口：**AstrBot → 插件 → NekoNekoNin · Minecraft资料助手 → 配置**。常用选项直接显示，适用时提供中文下拉标签、数值滑块、条件显示与高级折叠。完整选项见 [配置说明](docs/CONFIGURATION.md)。
+入口：**AstrBot → 插件 → Minecraft资料助手 → 配置**。常用选项直接显示，适用时提供中文下拉标签、数值滑块、条件显示与高级折叠。完整选项见 [配置说明](docs/CONFIGURATION.md)。
 
 ## 聊天示例
 

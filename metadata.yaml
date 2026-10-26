@@ -1,5 +1,5 @@
 name: astrbot_plugin_minecraft_knowledge
-display_name: NekoNekoNin · Minecraft资料助手
+display_name: Minecraft资料助手
 desc: 查阅 MC百科、Modrinth 和 CurseForge 的模组资料、教程与版本；CurseForge 需自备 API Key。
 version: 1.1.0
 author: NekoNekoNin
