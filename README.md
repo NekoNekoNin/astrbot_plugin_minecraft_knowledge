@@ -14,6 +14,12 @@
 - 查询 Modrinth 与 CurseForge 的项目介绍、平台下载量、版本文件和加载器信息。
 - 通过原生 MCP 提供 5 个查询工具，来源开关、密钥和网络参数在插件配置中管理。
 
+## 支持平台与标签
+
+支持 QQ / OneBot v11（`aiocqhttp`，如 NapCat）与 AstrBot 内置 WebChat（`webchat`）。市场平台字段表示消息适配器；当前声明按已接入和验收范围填写，其他平台尚未验收。
+
+标签：Minecraft、MC百科、模组、教程、MCP。
+
 ## 安装
 
 在 AstrBot 的插件管理上传本插件发布 ZIP，或使用[本仓库地址](https://github.com/NekoNekoNin/astrbot_plugin_minecraft_knowledge)安装。内部插件名保持 `astrbot_plugin_minecraft_knowledge`，升级时沿用已有配置。元数据已绑定本仓库，更新时请核对版本与更新记录。

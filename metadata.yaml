@@ -5,3 +5,12 @@ version: 1.2.0
 author: NekoNekoNin
 repo: https://github.com/NekoNekoNin/astrbot_plugin_minecraft_knowledge
 astrbot_version: '>=4.29.1'
+support_platforms:
+  - aiocqhttp
+  - webchat
+tags:
+  - Minecraft
+  - MC百科
+  - 模组
+  - 教程
+  - MCP
